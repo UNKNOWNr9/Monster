@@ -1,0 +1,52 @@
+{% extends 'WebSite/base.html' %}
+{% load static %}
+{% block Header %}
+            <!-- Page Header-->
+        <header class="masthead" style="background-image: url({% static 'base/assets/img/896199.jpg' %})">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading">
+                            <h1>پست ها</h1>
+                            <span class="subheading">↓</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+{% endblock %}
+{% block Main %}
+    <!-- Main Content-->
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    {% for obj in object_list %}
+                    <!-- Post preview-->
+                    <div class="post-preview">
+                        <a href="{% url 'Nasa:Nasa-Detail' obj.Slug %}">
+                           <center style="margin-bottom: 35px"><h1 class="post-title">{{ obj.Title }}</h1></center>
+                           <center style="margin-bottom: 50px"> <img src="{{ obj.Image.url|safe }}" style="width: auto; height: 200px"> </center>
+                            <h3 class="post-subtitle">{{ obj.Description|truncatewords:20 }}</h3>
+                        </a>
+                        <p class="post-meta">
+                            ارسال شده توسط
+                            <a href="#!">ادمین</a>
+                            در {{ obj.Published }}
+                        </p>
+                    </div>
+                    <!-- Divider-->
+                    <hr class="my-4" />
+                    {% endfor %}
+                    <!-- Pager-->
+                {% if page_obj.has_next %}
+                    <a style="float:right; margin: 7px" class="btn btn-primary float-right" href="{% url 'Nasa:post' %}?page={{ page_obj.next_page_number }}">   → بعدی</a>
+                {% endif %}
+
+                {% if page_obj.has_previous %}
+                    <a style="margin: 7px; float: left" class="btn btn-primary float-left" href="{% url 'Nasa:post' %}?page={{ page_obj.previous_page_number }}">  قبلی ←  </a>
+                {% endif %}
+                </div>
+            </div>
+        </div>
+
+{% endblock %}

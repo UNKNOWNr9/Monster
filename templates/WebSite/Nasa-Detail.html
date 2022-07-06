@@ -1,0 +1,27 @@
+{% extends 'WebSite/base.html' %}
+{% load static %}
+{% block header %}
+                <!-- Page Header-->
+        <header class="masthead" style="background-image: url({% static 'base/assets/img/home-bg.jpg' %})">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading">
+                            <h1>Clean Blog</h1>
+                            <span class="subheading">A Blog Theme by Start Bootstrap</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+{% endblock %}
+
+
+{% block Main %}
+   <h1><center style="margin-bottom: 25px">{{ obj.Title }}</center></h1>
+    <center> <img src="{{ obj.Image.url|safe }}" style="width: auto; height: 400px"> </center>
+    <div class="Nasa-Detail-Description">
+        توضیحات :
+    </div>
+    <div style="padding: 70px">{{ obj.Description }}</div>
+{% endblock %}
