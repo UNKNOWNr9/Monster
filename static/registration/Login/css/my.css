@@ -2,3 +2,8 @@ body{
     text-align: right;
     direction: rtl;
 }
+.errors{
+    color: red;
+    background:rgba(255,62,0,0.07);
+    padding: 20px 30px;
+}

@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Nasa.apps.NasaConfig',
     'Account.apps.AccountConfig',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
