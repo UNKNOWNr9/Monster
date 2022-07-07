@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 from django.utils import timezone
 from django.utils.html import format_html
 # Create your models here.
@@ -25,6 +26,7 @@ class post(models.Model):
         ('d', 'draft'),
     )
 
+    author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL , verbose_name='نویسنده')
     Title = models.CharField(max_length=60, verbose_name='عنوان')
     Description = models.TextField(verbose_name='مشخصات')
     Image = models.ImageField(upload_to='Images', verbose_name='تصویر')

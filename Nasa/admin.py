@@ -21,7 +21,7 @@ def make_draft(modeladmin, request, queryset):
 
 
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('Title', 'thumbnail_tag', 'Slug', 'Status', 'Published')
+    list_display = ('Title', 'thumbnail_tag', 'author', 'Slug', 'Status', 'Published')
     list_filter = ('Title', 'Status')
     search_fields = ('Title',)
     ordering = ('Status', '-Published')
