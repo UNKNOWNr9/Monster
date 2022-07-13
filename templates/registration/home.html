@@ -1,1 +1,52 @@
-{{ user.get_full_name }}
+{% extends 'registration/base.html' %}
+
+{% block title %}
+    لیست پست ها
+{% endblock %}
+
+
+{% block main %}
+    <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <!-- /.card-header -->
+              <div class="card-body table-responsive p-0">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>عنوان پست</th>
+                      <th>تصویر</th>
+                      <th>توضیحات</th>
+                      <th>نویسنده</th>
+                      <th>تاریخ انتشار</th>
+                      <th>وضعیت</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% for obj in object_list %}
+                        <tr>
+                      <td>{{ obj.Title }}</td>
+                      <td><img src="{{ obj.Image.url }}" width="120px"></td>
+                      <td>{{ obj.Description|truncatewords:30|safe }}</td>
+                      <td>{{ obj.author.get_full_name }}</td>
+                      <td>{{ obj.Published }}</td>
+                      <td>
+                        {% if obj.Status == 'p' %}
+                            <span class="badge badge-success">منتشر شده</span>
+                            <a target="_blank" class="badge badge-primary" href="{% url 'Nasa:Nasa-Detail' obj.Slug %}">نمایش پست</a>
+                        {% else %}
+                            <span class="badge badge-danger">پیشنویس</span>
+                        {% endif %}
+
+                      </td>
+                    </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+{% endblock %}

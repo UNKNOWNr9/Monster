@@ -1,7 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView
 from Nasa.models import post
-from django.core.paginator import Paginator
 # Create your views here.
 class Home(ListView):
     queryset = ''

@@ -1,6 +1,5 @@
 from django.contrib import admin
 from Nasa.models import post, PostCategory
-
 # Register your models here.
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('Title', 'Slug', 'Status', 'Position')

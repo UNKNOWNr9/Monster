@@ -1,0 +1,62 @@
+{% extends 'registration/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    افزودن پست
+{% endblock %}
+
+
+{% block main %}
+    <div class="card-body">
+			<form method="post" enctype="multipart/form-data">{% csrf_token %}
+				<div class="row">
+					<div class="col-6">
+						{{ form.Title|as_crispy_field }}
+					</div>
+					<div class="col-6">
+						{{ form.Slug|as_crispy_field }}
+					</div>
+					<div class="col-12">
+						{{ form.Description|as_crispy_field }}
+					</div>
+					<div class="col-6">
+						{{ form.Category|as_crispy_field }}
+					</div>
+					<div class="col-6">
+						{{ form.Image|as_crispy_field }}
+					</div>
+					<div class="col-6">
+						{{ form.Published|as_crispy_field }}
+					</div>
+					{% if user.is_superuser %}
+						<div class="col-6">
+							{{ form.author|as_crispy_field }}
+						</div>
+						<div class="col-6">
+							{{ form.Status|as_crispy_field }}
+						</div>
+					{% else %}
+					<div class="col-6">
+						 <div id="div_id_status" class="form-group">
+								<label for="id_status" class=" requiredField">
+								وضعیت<span class="asteriskField">*</span>
+								</label>
+								<div class="">
+									 <select name="status" class="select form-control" required="" id="id_status">
+											<option value="">---------</option>
+											<option value="d">پیش‌نویس</option>
+											<option value="i">ارسال برای ادمین</option>
+									 </select>
+								</div>
+						 </div>
+					</div>
+				{% endif %}
+				</div>
+				<button class="btn btn-success">ارسال مقاله</button>
+				{% if user.is_superuser and request.resolver_match.kwargs.pk %}
+				<a href="{% url 'account:article-delete' request.resolver_match.kwargs.pk %}" class="btn btn-danger">حذف</a>
+				{% endif %}
+			</form>
+		</div>
+
+{% endblock %}

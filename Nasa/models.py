@@ -1,7 +1,8 @@
 from django.db import models
-from django.contrib.auth.models import User
+from Account.models import User
 from django.utils import timezone
 from django.utils.html import format_html
+from django.urls import reverse
 # Create your models here.
 class PostCategory(models.Model):
     Title = models.CharField(max_length=40, verbose_name='عنوان')
@@ -38,6 +39,9 @@ class post(models.Model):
     Category = models.ManyToManyField(PostCategory, verbose_name='دسته بندی')
 
 
+    def get_absolute_url(self):
+        return reverse('account:home')
+
     class Meta:
         verbose_name = 'پست'
         verbose_name_plural = 'پست ها'
@@ -49,5 +53,4 @@ class post(models.Model):
         return format_html("<img width=80 height=50 style='border-radius: 5px;' src='{}'>".format(self.Image.url))
 
     thumbnail_tag.short_description = "عکس"
-
 
