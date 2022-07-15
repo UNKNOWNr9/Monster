@@ -1,11 +1,11 @@
 from django.urls import path
 from django.contrib.auth import views
-from Account.views import PostList, PostCreate
+from Account.views import PostList, PostCreate, PostUpdate, PostDelete
 
 app_name = 'account'
 urlpatterns = [
     path("login/", views.LoginView.as_view(), name="login"),
-  # path("logout/", views.LogoutView.as_view(), name="logout"),
+   path("logout/", views.LogoutView.as_view(), name="logout"),
   # path(
   #     "password_change/", views.PasswordChangeView.as_view(), name="password_change"
   # ),
@@ -35,4 +35,6 @@ urlpatterns = [
 urlpatterns += [
     path('', PostList.as_view(), name='home'),
     path('Post/Create', PostCreate.as_view(), name='post-create'),
+    path('Post/Update/<int:pk>', PostUpdate.as_view(), name='post-update'),
+    path('Post/Delete/<int:pk>', PostDelete.as_view(), name='post-delete'),
 ]

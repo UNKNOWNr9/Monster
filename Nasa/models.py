@@ -23,21 +23,23 @@ class PostCategory(models.Model):
 
 class post(models.Model):
     STATUS_CHOICES = (
-        ('p', 'published'),
-        ('d', 'draft'),
+        ('p', 'منتشر شده'),
+        ('d', 'پیشنویس'),
+        ('i', 'در حال بررسی'),
+        ('b', 'برگشت داده شده'),
     )
 
     author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL , verbose_name='نویسنده')
     Title = models.CharField(max_length=60, verbose_name='عنوان')
     Description = models.TextField(verbose_name='مشخصات')
     Image = models.ImageField(upload_to='Images', verbose_name='تصویر')
-    Slug = models.SlugField(max_length=100, unique=True)
+    Slug = models.SlugField(max_length=100, unique=True, verbose_name='آدرس')
     Status = models.CharField(max_length=1, choices=STATUS_CHOICES, verbose_name='وضعیت انتشار')
-    Published = models.DateTimeField(default=timezone.now)
+    Published = models.DateTimeField(default=timezone.now, verbose_name='تاریخ انتشار')
     Created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     Category = models.ManyToManyField(PostCategory, verbose_name='دسته بندی')
-
+    Is_Special = models.BooleanField(default=False, verbose_name='پست ویژه')
 
     def get_absolute_url(self):
         return reverse('account:home')

@@ -23,5 +23,13 @@
     <div class="Nasa-Detail-Description">
         توضیحات :
     </div>
-    <div style="padding: 70px">{{ obj.Description }}</div>
+    {% if obj.Is_Special %}
+        {% if user.athenticated and user.Is_Special or user == obj.author or user.is_superuser %}
+            <div style="padding: 70px">{{ obj.Description|safe }}</div>
+            {% else %}
+            <p>این پست ویژه است.<a href="#">اشتراک ویژه تهیه کنید</a></p>
+        {% endif %}
+    {% else %}
+        <div style="padding: 70px">{{ obj.Description|safe }}</div>
+    {% endif %}
 {% endblock %}

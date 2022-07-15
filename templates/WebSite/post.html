@@ -26,7 +26,7 @@
                         <a href="{% url 'Nasa:Nasa-Detail' obj.Slug %}">
                            <center style="margin-bottom: 35px"><h1 class="post-title">{{ obj.Title }}</h1></center>
                            <center style="margin-bottom: 50px"> <img src="{{ obj.Image.url|safe }}" style="width: auto; height: 200px"> </center>
-                            <h3 class="post-subtitle">{{ obj.Description|truncatewords:20 }}</h3>
+                            <h3 class="post-subtitle">{{ obj.Description|truncatewords:20|safe }}</h3>
                         </a>
                         <p class="post-meta">
                             ارسال شده توسط

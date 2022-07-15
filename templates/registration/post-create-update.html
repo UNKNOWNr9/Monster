@@ -31,6 +31,7 @@
 					{% if user.is_superuser %}
 						<div class="col-6">
 							{{ form.author|as_crispy_field }}
+							{{ form.Is_Special|as_crispy_field }}
 						</div>
 						<div class="col-6">
 							{{ form.Status|as_crispy_field }}
@@ -53,9 +54,6 @@
 				{% endif %}
 				</div>
 				<button class="btn btn-success">ارسال مقاله</button>
-				{% if user.is_superuser and request.resolver_match.kwargs.pk %}
-				<a href="{% url 'account:article-delete' request.resolver_match.kwargs.pk %}" class="btn btn-danger">حذف</a>
-				{% endif %}
 			</form>
 		</div>
 
