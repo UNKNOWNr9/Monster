@@ -18,7 +18,10 @@
 
 
 {% block Main %}
-   <h1><center style="margin-bottom: 25px">{{ obj.Title }}</center></h1>
+   <h1><center style="margin-bottom: 25px">{{ obj.Title }}{% if obj.Is_Special %}
+                                (<span style="color: red">ویژه</span>)
+                            {% endif %}</center>
+   </h1>
     <center> <img src="{{ obj.Image.url|safe }}" style="width: auto; height: 400px"> </center>
     <div class="Nasa-Detail-Description">
         توضیحات :

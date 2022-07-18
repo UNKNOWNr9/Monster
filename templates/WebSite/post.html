@@ -24,7 +24,11 @@
                     <!-- Post preview-->
                     <div class="post-preview">
                         <a href="{% url 'Nasa:Nasa-Detail' obj.Slug %}">
-                           <center style="margin-bottom: 35px"><h1 class="post-title">{{ obj.Title }}</h1></center>
+                           <center style="margin-bottom: 35px"><h1 class="post-title">{{ obj.Title }}
+                               {% if obj.Is_Special %}
+                                (<span style="color: red">ویژه</span>)
+                            {% endif %}
+                           </h1></center>
                            <center style="margin-bottom: 50px"> <img src="{{ obj.Image.url|safe }}" style="width: auto; height: 200px"> </center>
                             <h3 class="post-subtitle">{{ obj.Description|truncatewords:20|safe }}</h3>
                         </a>

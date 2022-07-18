@@ -1,6 +1,7 @@
 from django.http import Http404
 from django.shortcuts import get_object_or_404
 from Nasa.models import post
+from django.shortcuts import redirect
 
 
 class FieldsMixin():
@@ -36,6 +37,16 @@ class AuthorAccessMixin():
 
         else:
             raise Http404("You Dont Have Access To This Page.")
+
+class AuthorsAccessMixin():
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            if request.user.is_superuser or request.user.is_author:
+                return super().dispatch(request, *args, **kwargs)
+            else:
+                raise Http404("You Dont Have Access To This Page.")
+        else:
+            return redirect('account:login')
 
 
 class SuperUserAccessMixin():
