@@ -46,7 +46,7 @@ class AuthorsAccessMixin():
             else:
                 raise Http404("You Dont Have Access To This Page.")
         else:
-            return redirect('account:login')
+            return redirect('login')
 
 
 class SuperUserAccessMixin():

@@ -3,7 +3,7 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from Nasa.models import post
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, PasswordChangeView
 from .models import User
 from .mixins import FieldsMixin, FormValidMixin, AuthorAccessMixin, SuperUserAccessMixin, AuthorsAccessMixin
 from .forms import ProfileForm
@@ -54,3 +54,6 @@ class Login(LoginView):
             return reverse_lazy('account:home')
         else:
             return reverse_lazy('account:profile')
+
+
+
