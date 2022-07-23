@@ -3,6 +3,9 @@ from Account.models import User
 from django.utils import timezone
 from django.utils.html import format_html
 from django.urls import reverse
+from django.contrib.contenttypes.fields import GenericRelation
+from comment.models import Comment
+
 # Create your models here.
 class PostCategory(models.Model):
     Title = models.CharField(max_length=40, verbose_name='عنوان')
@@ -28,7 +31,7 @@ class post(models.Model):
         ('i', 'در حال بررسی'),
         ('b', 'برگشت داده شده'),
     )
-
+    comments = GenericRelation(Comment)
     author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL , verbose_name='نویسنده')
     Title = models.CharField(max_length=60, verbose_name='عنوان')
     Description = models.TextField(verbose_name='مشخصات')

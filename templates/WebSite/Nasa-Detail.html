@@ -1,4 +1,5 @@
 {% extends 'WebSite/base.html' %}
+{% load comment_tags %}
 {% load static %}
 {% block header %}
                 <!-- Page Header-->
@@ -18,14 +19,19 @@
 
 
 {% block Main %}
+<div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto text-justify">
    <h1><center style="margin-bottom: 25px">{{ obj.Title }}{% if obj.Is_Special %}
                                 (<span style="color: red">ویژه</span>)
                             {% endif %}</center>
    </h1>
     <center> <img src="{{ obj.Image.url|safe }}" style="width: auto; height: 400px"> </center>
-    <div class="Nasa-Detail-Description">
+    <center>
+        <div class="Nasa-Detail-Description">
         توضیحات :
-    </div>
+        </div>
+    </center>
     {% if obj.Is_Special %}
         {% if user.athenticated and user.Is_Special or user == obj.author or user.is_superuser %}
             <div style="padding: 70px">{{ obj.Description|safe }}</div>
@@ -35,4 +41,10 @@
     {% else %}
         <div style="padding: 70px">{{ obj.Description|safe }}</div>
     {% endif %}
+        {% render_comments obj request %}
+        {% include_bootstrap %}
+        </div>
+    </div>
+</div>
+
 {% endblock %}
