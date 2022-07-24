@@ -8,12 +8,18 @@
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         <div class="site-heading">
                             <h1>پست ها</h1>
+        <! –– search-bar ––>
+                        <form class="inline-form" action="{% url 'Nasa:search' %}">
+                                <center><input style="width: 230px; height: 30px; margin: 22px; text-align: center" type="text" name="q" class="form-control" placeholder="جستجوی متن"></center>
+                                <button style="margin: 15px; padding: 14px; border-radius: 16px" class="btn btn-success">جستجو</button>
+                        </form>
                             <span class="subheading">↓</span>
                         </div>
                     </div>
                 </div>
             </div>
         </header>
+
 {% endblock %}
 {% block Main %}
     <!-- Main Content-->
