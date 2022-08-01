@@ -1,5 +1,5 @@
-EMAIL_HOST_PASSWORD='sample'
-SECRET_KEY='sample'
-EMAIL_HOST='sample'
+EMAIL_HOST_PASSWORD='xcxraqvzhqgvnkbl'
+EMAIL_HOST='smtp.gmail.com'
 EMAIL_PORT=587
-EMAIL_HOST_USER='sample'
+EMAIL_HOST_USER='BloodyEmailHere@gmail.com'
+SECRET_KEY='django-insecure-33r=l%7cu6u)7vb#k99=j3sq#@-%#$=5_-5!1ppk-u-0h^5u73'
